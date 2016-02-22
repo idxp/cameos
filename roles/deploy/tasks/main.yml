@@ -1,0 +1,7 @@
+---
+- include: setup.yml
+  when: deploy_setup
+- include: checks.yml
+  when: not deploy_setup
+- include: update.yml
+  when: deploy_setup or latest_release.stdout.strip() != current_release.stdout.strip()
